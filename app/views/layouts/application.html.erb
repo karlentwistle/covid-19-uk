@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @area.name %> COVID-19 cases</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <header>
+      <%= form_tag({}, {method: :get}) do |f| %>
+        <div class=’form-group’>
+          <%= select_tag("area_code", options_from_collection_for_select(@areas, :code, :name, @area.code), onchange: "this.form.submit()") %>
+          <noscript>
+            <%= submit_tag("filter") %>
+        </noscript>
+        </div>
+      <% end %>
+
+      <ul class="nav-bar">
+        <li>
+          <%=
+            link_to_unless controller.action_name == "cumulative",
+            'Cumulative',
+            cumulative_path(area_code: @area.code)
+          %>
+        </li>
+        <li>
+          <%=
+            link_to_unless controller.action_name == "daily",
+            'Daily',
+            daily_path(area_code: @area.code)
+          %>
+        </li>
+      </ul>
+    </header>
+
+
+    <div style="clear: both;"></div>
+
+    <%= yield %>
+  </body>
+</html>

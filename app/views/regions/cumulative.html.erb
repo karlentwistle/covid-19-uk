@@ -1,0 +1,8 @@
+<div class="chart-container">
+  <p>Cumulative confirmed COVID-19 cases - <%= @area.name %></p>
+
+  <%= line_chart @area.daily_cumulative_counts, ytitle: "Confirmed Cases", height: "100%" %>
+
+  <p>Daily cumulative case counts are those that were published each day on the PHE Dashboard. People who have recovered and those who have died are included in the cumulative counts.</p>
+</div>
+

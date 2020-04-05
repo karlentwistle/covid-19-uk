@@ -1,0 +1,8 @@
+<div class="chart-container">
+  <p>Daily confirmed COVID-19 cases - <%= @area.name %></p>
+
+  <%= column_chart @area.daily_counts, ytitle: "Confirmed Cases", height: "100%" %>
+
+  <p>Daily case counts are those that were published each day on the PHE Dashboard. People who have recovered and those who have died are included in the counts.</p>
+</div>
+
