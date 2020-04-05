@@ -1,24 +1,23 @@
-# README
+# COVID 19 UK
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![image](https://user-images.githubusercontent.com/666397/78511574-a3ca5480-7795-11ea-980a-37b55fa2cc4c.png)
 
-Things you may want to cover:
+> :bomb: Please note COVID 19 UK is currently in early active development, `master` branch may not be in a usable state.
 
-* Ruby version
+## Features
+- Daily confirmed COVID-19 cases 
+- Cumulative confirmed COVID-19 cases
+- Filter by PHE region 
 
-* System dependencies
+## Installing
 
-* Configuration
+```
+$ git clone git@github.com:karlentwistle/covid-19-uk.git
+$ cd covid-19-uk
+$ bundle 
+```
 
-* Database creation
+## Contributing
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Contributions are welcome, please follow
+[GitHub Flow](https://guides.github.com/introduction/flow/index.html)
