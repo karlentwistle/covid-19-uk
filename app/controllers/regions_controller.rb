@@ -24,10 +24,6 @@ class RegionsController < ApplicationController
   end
 
   def utlas
-    Utla.from_spreadsheet(spreadsheet)
-  end
-
-  def spreadsheet
-    Spreadsheet.covid_19
+    Spreadsheet.covid_19.utlas
   end
 end
