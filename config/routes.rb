@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "cumulative", to: "regions#cumulative"
-  get "daily", to: "regions#daily"
-  root to: "regions#cumulative"
+  get "cumulative", to: "areas#cumulative"
+  get "daily", to: "areas#daily"
+  root to: "areas#cumulative"
 end

@@ -1,4 +1,4 @@
-class RegionsController < ApplicationController
+class AreasController < ApplicationController
   def cumulative
     @areas = set_areas
     @area = find_area(@areas)
