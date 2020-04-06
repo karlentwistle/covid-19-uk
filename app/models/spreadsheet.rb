@@ -8,14 +8,20 @@ class Spreadsheet
   end
 
   def open
-    Roo::Spreadsheet.open(path)
+    @open ||= Roo::Spreadsheet.open(path)
   end
 
   def utlas
-    Rails.cache.fetch('utlas_cache', expires_in: 1.hour) do
-      open
-        .sheet('UTLAs')
-        .select { |row| /E\d{8}/.match?(row[0].to_s) }
+    @utlas ||= open.sheet('UTLAs').select { |row| /E\d{8}/.match?(row[0].to_s) }
+  end
+
+  def nhs_regions
+    @nhs_regions ||= open.sheet('NHS Regions').select { |row| /E\d{8}/.match?(row[0].to_s) }
+  end
+
+  def areas
+    Rails.cache.fetch('areas_cache', expires_in: 1.hour) do
+      utlas + nhs_regions
     end
   end
 

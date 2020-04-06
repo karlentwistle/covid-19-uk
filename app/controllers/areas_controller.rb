@@ -24,6 +24,6 @@ class AreasController < ApplicationController
   end
 
   def utlas
-    Spreadsheet.covid_19.utlas
+    Spreadsheet.covid_19.areas
   end
 end
