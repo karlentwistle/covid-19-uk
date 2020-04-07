@@ -18,13 +18,11 @@ class Area
   end
 
   def daily_counts
-    daily_cumulative_counts.map do |date, cumulative_count|
-      yesturday_cumulative_count = daily_cumulative_counts.fetch(date.yesterday, 0)
-      daily_count = cumulative_count - yesturday_cumulative_count
-      normalized_daily_count = [0, daily_count].max
+    @daily_counts ||= calculate_daily_counts
+  end
 
-      [date, normalized_daily_count]
-    end.to_h
+  def average_cumulative_counts
+    @average_cumulative_counts ||= calculate_average_cumulative_counts
   end
 
   attr_reader :code
@@ -42,6 +40,28 @@ class Area
 
       [date, cumulative_count]
     end.to_h
+  end
+
+  def calculate_daily_counts
+    daily_cumulative_counts.map do |date, cumulative_count|
+      yesturday_cumulative_count = daily_cumulative_counts.fetch(date.yesterday, 0)
+      daily_count = cumulative_count - yesturday_cumulative_count
+      normalized_daily_count = [0, daily_count].max
+
+      [date, normalized_daily_count]
+    end.to_h
+  end
+
+  def calculate_average_cumulative_counts
+    daily_counts
+      .to_a
+      .in_groups_of(3)
+      .inject(Hash.new) do |hash, group|
+        return hash if group.any?(nil)
+
+        hash[group.to_h.keys.last] = group.to_h.values.sum / 3
+        hash
+      end
   end
 
   attr_reader :cumulative_counts

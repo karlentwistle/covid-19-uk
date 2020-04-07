@@ -9,6 +9,11 @@ class AreasController < ApplicationController
     @area = find_area(@areas)
   end
 
+  def average
+    @areas = set_areas
+    @area = find_area(@areas)
+  end
+
   private
 
   def set_areas

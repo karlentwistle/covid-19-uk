@@ -36,6 +36,13 @@
             daily_path(area_code: @area.code)
           %>
         </li>
+        <li>
+          <%=
+            link_to_unless controller.action_name == "average",
+            'Average',
+            average_path(area_code: @area.code)
+          %>
+        </li>
       </ul>
     </header>
 

@@ -1,0 +1,7 @@
+<div class="chart-container">
+  <p>Rolling three day average confirmed cases - <%= @area.name %></p>
+
+  <%= line_chart @area.average_cumulative_counts, ytitle: "Average Confirmed Cases", height: "100%" %>
+
+  <p>Average daily case counts are a rolling three day average of <%= link_to 'daily case counts', daily_path(area_code: @area.code) %>. People who have recovered and those who have died are included in the counts.</p>
+</div>
