@@ -1,0 +1,2 @@
+class VisitEvent < ApplicationRecord
+end
