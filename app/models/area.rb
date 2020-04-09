@@ -21,8 +21,8 @@ class Area
     @daily_counts ||= calculate_daily_counts
   end
 
-  def average_cumulative_counts
-    @average_cumulative_counts ||= calculate_average_cumulative_counts
+  def rolling_average_daily_counts
+    @rolling_average_daily_counts ||= calculate_rolling_average_daily_counts
   end
 
   attr_reader :code
@@ -52,16 +52,17 @@ class Area
     end.to_h
   end
 
-  def calculate_average_cumulative_counts
-    daily_counts
-      .to_a
-      .in_groups_of(3)
-      .inject(Hash.new) do |hash, group|
-        return hash if group.any?(nil)
+  def calculate_rolling_average_daily_counts
+    daily_counts.keys.map do |date|
+      sample_start = date - 2.days
+      sample_end = date
+      range = sample_start..sample_end
 
-        hash[group.to_h.keys.last] = group.to_h.values.sum / 3
-        hash
-      end
+      sample = daily_counts.select { |date_key| date_key.in?(range) }
+      average_count = sample.values.sum / sample.size
+
+      [date, average_count]
+    end.to_h
   end
 
   attr_reader :cumulative_counts
