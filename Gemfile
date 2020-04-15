@@ -11,6 +11,7 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 gem 'roo', '~> 2.8.0'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
+gem 'azure-storage-blob', '~> 1.0', '>= 1.0.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

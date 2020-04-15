@@ -17,7 +17,7 @@ class AreasController < ApplicationController
   private
 
   def set_areas
-    Area.from_utlas(utlas).sort_by(&:name)
+    Area.from_json(utlas_json).sort_by(&:name)
   end
 
   def find_area(areas)
@@ -28,7 +28,7 @@ class AreasController < ApplicationController
     params.fetch(:area_code, 'E06000023')
   end
 
-  def utlas
-    Spreadsheet.covid_19.areas
+  def utlas_json
+    DataSource.utlas_json
   end
 end
