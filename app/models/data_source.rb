@@ -1,11 +1,8 @@
 module DataSource
-  HOST = 'https://c19pub.azureedge.net'.freeze
+  HOST = 'https://c19downloads.azureedge.net'.freeze
+  PATH = '/downloads/data/utlas_latest.json'.freeze
 
   class << self
-    def path
-      BlobNavigator.latest_blob.name
-    end
-
     def connection
       Faraday.new(url: HOST) do |faraday|
         faraday.response :json
@@ -15,12 +12,12 @@ module DataSource
 
     def to_json
       Rails.cache.fetch('data_source_cache', expires_in: 1.hour) do
-        connection.get(path).body
+        connection.get(PATH).body
       end
     end
 
     def utlas_json
-      to_json['utlas']
+      to_json.except("metadata")
     end
   end
 end
