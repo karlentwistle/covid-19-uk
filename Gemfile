@@ -10,7 +10,6 @@ gem 'groupdate'
 gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
-gem 'roo', '~> 2.8.0'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 
